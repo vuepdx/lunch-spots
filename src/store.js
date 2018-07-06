@@ -13,15 +13,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    getPosition ({context}) {
+    getPosition ({ commit }) {
       return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(pos => {
           const position = {
-            lat: pos.coords.latitude,
-            lng: pos.coords.longitude
+            latitude: pos.coords.latitude,
+            longitude: pos.coords.longitude
           }
+          console.log('it is hitß')
           resolve(position)
-          context.commit('getPosition', position)
+          commit('getPosition', position)
         })
       })
     }

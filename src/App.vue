@@ -1,5 +1,8 @@
 <template>
-  <div></div>
+  <div>
+    <h2>Number of Lunch Spots: {{spots.length}}</h2>
+    <pre>{{spots}}</pre>
+  </div>
 </template>
 <script>
 export default {
@@ -7,12 +10,23 @@ export default {
   components: {},
   props: {},
   data () {
-    return {}
+    return {
+      spots: []
+    }
   },
   mounted () {
-    this.$store.dispatch('getPosition').then(res => {
-      console.log(res)
-      console.log(this.$google)
+    this.$store.dispatch('getPosition').then(pos => {
+      const location = `${pos.latitude},${pos.longitude}`
+      this.$http.get('nearbysearch/json', {
+        params: {
+          key: this.$google,
+          location: location,
+          types: 'restaurant',
+          radius: 1000
+        }
+      }).then(res => {
+        this.spots = res.data.results
+      })
     })
   },
   computed: {},
