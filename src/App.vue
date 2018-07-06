@@ -9,6 +9,12 @@ export default {
   data () {
     return {}
   },
+  mounted () {
+    this.$store.dispatch('getPosition').then(res => {
+      console.log(res)
+      console.log(this.$google)
+    })
+  },
   computed: {},
   methods: {}
 }
