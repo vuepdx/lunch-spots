@@ -17,10 +17,9 @@ export default new Vuex.Store({
       return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition(pos => {
           const position = {
-            latitude: pos.coords.latitude,
-            longitude: pos.coords.longitude
+            lat: pos.coords.latitude,
+            long: pos.coords.longitude
           }
-          console.log('it is hitß')
           resolve(position)
           commit('getPosition', position)
         })
