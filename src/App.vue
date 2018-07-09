@@ -1,9 +1,8 @@
 <template>
   <div>
-    <h2>Number of Lunch Spots: {{spots.length}}</h2>
+    <h2>Number of Lunch Spots 20 of {{total}}</h2>
     <ul>
       <li v-for="s in spots" :key="s.id">
-        <img :src="getPhoto(s)">
         <pre>{{s}}</pre>
       </li>
     </ul>
@@ -16,29 +15,35 @@ export default {
   props: {},
   data () {
     return {
-      spots: []
+      location: null,
+      spots: [],
+      total: 0
     }
   },
   mounted () {
-    this.$store.dispatch('getPosition').then(pos => {
-      const location = `${pos.lat},${pos.long}`
-      this.$http.get('nearbysearch/json', {
-        params: {
-          sensor: true,
-          location: location,
-          types: 'restaurant',
-          radius: 1000
-        }
-      }).then(res => {
-        this.spots = res.data.results
-      })
+    this.$store.dispatch('getPosition').then(position => {
+      this.location = position
+      this.getPlaces()
     })
   },
   computed: {},
   methods: {
-    getPhoto (place) {
-      const photo = place.photos[0].photo_reference
-      return `https://maps.googleapis.com/maps/api/place/photo?maxwidth=200&maxheight=200&photoreference=${photo}&key=${this.$google}`
+    getPlaces () {
+      let data = {
+        params: {
+          radius: 300,
+          categories: 'food',
+          latitude: this.location.lat,
+          longitude: this.location.long,
+          sort_by: 'distance'
+        }
+      }
+      this.$http.get('businesses/search', data).then(res => {
+        const response = res.data
+        console.log(res)
+        this.spots = response.businesses
+        this.total = response.total
+      })
     }
   }
 }

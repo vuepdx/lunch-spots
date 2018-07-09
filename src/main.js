@@ -6,12 +6,12 @@ import axios from 'axios'
 import './registerServiceWorker'
 
 Vue.prototype.$http = axios.create({
-  baseURL: 'https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/',
-  params: {
-    key: process.env.GOOGLE_KEY
+  baseURL: 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/',
+  headers: {
+    'Authorization': `Bearer ${process.env.YELP_KEY}`
   }
 })
-Vue.prototype.$google = process.env.GOOGLE_KEY
+
 Vue.config.productionTip = process.env.NODE_ENV === 'production'
 
 new Vue({
