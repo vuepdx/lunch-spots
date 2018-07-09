@@ -1,9 +1,12 @@
 <template>
   <div>
-    <h2>Number of Lunch Spots 20 of {{total}}</h2>
+    <h2>Number of Lunch Spots: 50 of {{total}}</h2>
     <ul>
       <li v-for="s in spots" :key="s.id">
+        <img :src="s.image_url" width="150">
+        <h2>{{s.name}}</h2>
         <pre>{{s}}</pre>
+        <hr>
       </li>
     </ul>
   </div>
@@ -31,6 +34,7 @@ export default {
     getPlaces () {
       let data = {
         params: {
+          limit: 50,
           radius: 300,
           categories: 'food',
           latitude: this.location.lat,
