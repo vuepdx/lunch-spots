@@ -5,6 +5,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import axios from 'axios'
+import '@/components/_globalize'
 import './registerServiceWorker'
 
 Vue.prototype.$http = axios.create({

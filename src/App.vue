@@ -1,13 +1,14 @@
 <template>
   <v-app>
-    <v-toolbar app>
+    <v-toolbar app color="blue" dark>
       <v-toolbar-title>Lunch Spot Finder</v-toolbar-title>
     </v-toolbar>
     <v-content>
+      <search-form></search-form>
       <v-card v-if="spots.length">
         <v-container fluid grid-list-lg>
           <v-layout row wrap>
-            <v-flex xs12 v-for="s in spots" :key="s.id">
+            <v-flex xs6 v-for="s in spots" :key="s.id">
               <v-card>
                 <v-container fluid grid-list-lg>
                   <v-layout row>
@@ -15,6 +16,12 @@
                       <div>
                         <div class="headline">{{s.name}}</div>
                         <div>{{s.categories.map(c => c.title).join(', ')}}</div>
+                        <div class="address">
+                          <div v-for="(address, index) in s.location.display_address" :key="`address-${s.id}-${index}`">
+                            {{address}}
+                          </div>
+                        </div>
+                        <!-- <pre>{{s}}</pre> -->
                       </div>
                     </v-flex>
                     <v-flex xs3>
@@ -30,7 +37,7 @@
       <router-view></router-view>
     </v-content>
     <v-footer app>
-      <span>Lunch-Spots powered by &copy; {{ new Date().getFullYear() }}</span>
+      <span>Lunch Spots &copy; {{ new Date().getFullYear() }}</span>
     </v-footer>
   </v-app>
 </template>
@@ -51,20 +58,20 @@ export default {
   mounted () {
     this.$store.dispatch('getPosition').then(position => {
       this.location = position
-      this.getPlaces()
+      this.getSpots()
     })
   },
   computed: {},
   methods: {
-    getPlaces () {
-      let data = {
+    getSpots () {
+      const data = {
         params: {
           limit: 50,
-          radius: 300,
-          categories: 'food',
+          radius: 3000,
+          categories: 'vegetarian',
           latitude: this.location.lat,
-          longitude: this.location.long,
-          sort_by: 'distance'
+          longitude: this.location.long
+          // sort_by: 'distance'
         }
       }
       this.$http.get('businesses/search', data).then(res => {
