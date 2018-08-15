@@ -10,7 +10,9 @@ export default new Vuex.Store({
     spots: [],
     form: {
       search: '',
-      categories: []
+      categories: [
+        { key: 'Food (All)', value: 'food' }
+      ]
     }
   },
   mutations: {
@@ -48,7 +50,7 @@ export default new Vuex.Store({
     getSpots ({ state, commit }, payload) {
       if (!state.location) return
 
-      const categories = state.form.categories.map(c => c.value).toString()
+      const categories = state.form.categories.map(c => c.value)
       const data = {
         params: {
           limit: 50,
@@ -63,6 +65,11 @@ export default new Vuex.Store({
       commit('setLoading', true)
       axios.get('businesses/search', data).then(res => {
         commit('getSpots', res.data)
+      }).catch(err => {
+        commit('getSpots', {
+          total: null,
+          businesses: null
+        })
       })
     },
     searchText ({ commit }, payload) {
