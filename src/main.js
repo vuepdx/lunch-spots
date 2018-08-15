@@ -4,16 +4,11 @@ import './plugins/vuetify'
 import App from './App.vue'
 import router from './router'
 import store from './store'
-import axios from 'axios'
+import axios from './axios'
 import '@/components/_globalize'
 import './registerServiceWorker'
 
-Vue.prototype.$http = axios.create({
-  baseURL: 'https://cors-anywhere.herokuapp.com/https://api.yelp.com/v3/',
-  headers: {
-    'Authorization': `Bearer ${process.env.YELP_KEY}`
-  }
-})
+Vue.prototype.$http = axios
 
 Vue.config.productionTip = process.env.NODE_ENV === 'production'
 

@@ -1,17 +1,22 @@
 <template>
-  <v-form ref="form" v-model="valid" lazy-validation>
-    <v-card class="pa-4">
-      <v-text-field v-model="search" label="Seaarch" outline append-icon="search"></v-text-field>
-      <v-combobox v-model="category" :items="categories" item-text="key" item-value="value" chips multiple outline label="I use chips"></v-combobox>
-      <v-btn @click="submit">
-        submit
-      </v-btn>
-      <v-btn @click="clear">clear</v-btn>
-    </v-card>
-  </v-form>
+  <v-container>
+    <v-form ref="form" v-model="valid" lazy-validation>
+      <v-card class="pa-4" transparent>
+        <v-text-field v-model="search" label="Search" append-icon="search" solo></v-text-field>
+        <v-combobox v-model="categories" :items="categoryTypes" item-text="key" item-value="value" multiple small-chips solo label="Food Categories"></v-combobox>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn round large color="primary" :loading="loading" :disabled="loading || !location" @click="getSpots()">
+            Find Lunch Spots
+          </v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-form>
+  </v-container>
 </template>
 <script>
-import categories from '@/assets/categories'
+import categoryTypes from '@/assets/categories'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'SearchForm',
@@ -20,15 +25,31 @@ export default {
   data () {
     return {
       valid: true,
-      search: '',
-      category: ['food'],
-      categories: categories
+      categoryTypes: categoryTypes
     }
   },
-  computed: {},
+  computed: {
+    ...mapGetters(['form', 'loading', 'location']),
+    search: {
+      get () {
+        return this.form.search
+      },
+      set (value) {
+        this.searchText(value)
+      }
+    },
+    categories: {
+      get () {
+        return this.form.categories
+      },
+      set (value) {
+        console.log(value)
+        this.searchCategories(value)
+      }
+    }
+  },
   methods: {
-    submit () { },
-    clear () { }
+    ...mapActions(['getSpots', 'searchText', 'searchCategories'])
   }
 }
 </script>
