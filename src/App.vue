@@ -1,16 +1,47 @@
 <template>
-  <div>
-    <h2>Number of Lunch Spots: 50 of {{total}}</h2>
-    <ul>
-      <li v-for="s in spots" :key="s.id">
-        <img :src="s.image_url" width="150">
-        <h2>{{s.name}}</h2>
-        <pre>{{s}}</pre>
-        <hr>
-      </li>
-    </ul>
-  </div>
+  <v-app>
+    <v-toolbar app color="blue" dark>
+      <v-toolbar-title>Lunch Spot Finder</v-toolbar-title>
+    </v-toolbar>
+    <v-content>
+      <search-form></search-form>
+      <v-card v-if="spots.length">
+        <v-container fluid grid-list-lg>
+          <v-layout row wrap>
+            <v-flex xs6 v-for="s in spots" :key="s.id">
+              <v-card>
+                <v-container fluid grid-list-lg>
+                  <v-layout row>
+                    <v-flex xs9>
+                      <div>
+                        <div class="headline">{{s.name}}</div>
+                        <div>{{s.categories.map(c => c.title).join(', ')}}</div>
+                        <div class="address">
+                          <div v-for="(address, index) in s.location.display_address" :key="`address-${s.id}-${index}`">
+                            {{address}}
+                          </div>
+                        </div>
+                        <!-- <pre>{{s}}</pre> -->
+                      </div>
+                    </v-flex>
+                    <v-flex xs3>
+                      <v-card-media :src="s.image_url" height="125px" contain></v-card-media>
+                    </v-flex>
+                  </v-layout>
+                </v-container>
+              </v-card>
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+      <router-view></router-view>
+    </v-content>
+    <v-footer app>
+      <span>Lunch Spots &copy; {{ new Date().getFullYear() }}</span>
+    </v-footer>
+  </v-app>
 </template>
+
 <script>
 export default {
   name: 'App',
@@ -18,6 +49,7 @@ export default {
   props: {},
   data () {
     return {
+      title: '',
       location: null,
       spots: [],
       total: 0
@@ -26,32 +58,30 @@ export default {
   mounted () {
     this.$store.dispatch('getPosition').then(position => {
       this.location = position
-      this.getPlaces()
+      this.getSpots()
     })
   },
   computed: {},
   methods: {
-    getPlaces () {
-      let data = {
+    getSpots () {
+      const data = {
         params: {
           limit: 50,
-          radius: 300,
-          categories: 'food',
+          radius: 3000,
+          categories: 'vegetarian',
           latitude: this.location.lat,
-          longitude: this.location.long,
-          sort_by: 'distance'
+          longitude: this.location.long
+          // sort_by: 'distance'
         }
       }
       this.$http.get('businesses/search', data).then(res => {
         const response = res.data
-        console.log(res)
-        this.spots = response.businesses
         this.total = response.total
+        this.spots = response.businesses
       })
     }
   }
 }
 </script>
 <style lang="scss" scoped>
-
 </style>
