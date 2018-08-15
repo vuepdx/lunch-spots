@@ -2,8 +2,8 @@
   <v-container>
     <v-form ref="form" v-model="valid" lazy-validation>
       <v-card class="pa-4" transparent>
-        <v-text-field v-model="search" label="Search" append-icon="search" solo required @keyup.enter="submitForm()"></v-text-field>
-        <v-combobox v-model="categories" :items="categoryTypes" item-text="key" item-value="value" multiple small-chips solo required label="Food Categories"></v-combobox>
+        <v-text-field v-model="search" label="Search Term" append-icon="search" @keyup.enter="submitForm()"></v-text-field>
+        <v-combobox v-model="categories" :rules="categoryRules" :items="categoryTypes" item-text="key" item-value="value" multiple small-chips required label="Food Categories"></v-combobox>
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn round large @click="clearForm()">
@@ -28,7 +28,10 @@ export default {
   data () {
     return {
       valid: true,
-      categoryTypes: categoryTypes
+      categoryTypes: categoryTypes,
+      categoryRules: [
+        v => (v && v.length && !this.search.length) || 'Category or Search term is required'
+      ]
     }
   },
   computed: {

@@ -4,7 +4,7 @@
     <v-container v-if="spots.length" grid-list-xl>
       <v-layout row wrap>
         <v-flex xs12 md6 v-for="(s, i) in spots" :key="s.id">
-          <v-card class="card elevation-2">
+          <v-card class="card elevation-3">
             <v-container fluid grid-list-sm>
               <v-layout row>
                 <v-flex xs9>
