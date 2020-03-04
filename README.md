@@ -1,4 +1,6 @@
-# lunch-spots-2
+# Lunch Spots
+- Follow project setup guide
+- create a .env.local file and add `VUE_APP_YELP_KEY={key_here}`
 
 ## Project setup
 ```
@@ -24,6 +26,3 @@ yarn test:unit
 ```
 yarn lint
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
