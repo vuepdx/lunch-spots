@@ -5,9 +5,9 @@ import router from './router'
 import store from './store'
 import vuetify from './plugins/vuetify'
 import '@/components/_globalize'
-import axios from './axios'
+import http from './xhr'
 
-Vue.prototype.$http = axios
+Vue.prototype.$http = http
 Vue.config.productionTip = false
 
 new Vue({
