@@ -1,45 +1,38 @@
 <template>
-  <v-form ref="form" v-model="valid" lazy-validation>
-    <!-- <v-card class="pa-4" transparent> -->
-    <v-text-field v-model="search" label="Search Term" append-icon="mdi-magnify" outlined @keyup.enter="submitForm()"></v-text-field>
-    <v-combobox v-model="categories" :rules="categoryRules" :items="categoryTypes" item-text="key" item-value="value" multiple small-chips required outlined label="Food Categories"></v-combobox>
-    <v-select v-model="sort" :items="sortBy" label="Sort By" outlined></v-select>
-    <!-- <v-subheader class="pl-0">Distance</v-subheader>
-    <v-slider v-model="distance" thumb-label="always"></v-slider>-->
-    <v-slider v-model="distance" :hint="`${distance} mi.`" track-color="grey" min="0" max="10" tick-size="2" step="0.25" thumb-label="always" always-dirty persistent-hint>
-      <template v-slot:prepend>
-        <v-icon @click="distance = (distance - 0.25) || 0">mdi-minus</v-icon>
-      </template>
-
-      <template v-slot:append>
-        <v-icon @click="distance = (distance + 0.25) || 10">mdi-plus</v-icon>
-      </template>
-    </v-slider>
-    <v-rating v-model="rating" length="4" empty-icon="mdi-currency-usd-off" full-icon="mdi-currency-usd" clearable hover large></v-rating>
-    <!-- <v-card-actions> -->
-    <v-spacer></v-spacer>
-    <v-btn min-width="120" class="px-3 mr-3" large bottom ripple @click="clearForm()">clear</v-btn>
-    <v-btn min-width="120" closs="px-5" large ripple color="primary" bottom :loading="loading" :disabled="loading || !specificLocation" @click="submitForm()">Find Lunch Spots</v-btn>
-    <!-- </v-card-actions> -->
-    <!-- </v-card> -->
+  <v-form ref="form" v-model="valid" lazy-validation class="flex-grow-1 pa-3">
+    <v-row>
+      <v-col sm="5" class="py-0">
+        <v-text-field v-model="search" label="Search Term" append-icon="mdi-magnify" solo @keyup.enter="submitForm()"></v-text-field>
+      </v-col>
+      <v-col sm="5" class="py-0">
+        <v-combobox v-model="categories" :rules="categoryRules" :items="categoryTypes" item-text="key" item-value="value" multiple small-chips required solo label="Food Categories"></v-combobox>
+      </v-col>
+      <v-col sm="2" class="py-0">
+        <v-select v-model="sort" :items="sortBy" label="Sort By" solo></v-select>
+      </v-col>
+    </v-row>
+    <v-row no-gutters>
+      <v-spacer></v-spacer>
+      <v-col class="text-right">
+        <v-btn class="mx-4 px-6" ripple @click="clearForm()">clear</v-btn>
+        <v-btn class="px-6" ripple color="primary" :loading="loading" :disabled="loading || !specificLocation" @click="submitForm()">search</v-btn>
+      </v-col>
+    </v-row>
   </v-form>
 </template>
 <script>
 import categoryTypes from '@/assets/categories'
 import { mapActions, mapGetters } from 'vuex'
-// best_match, rating, review_count or distance
 
 export default {
   name: 'SearchForm',
-  components: {},
-  props: {},
   data () {
     return {
       rating: null,
       valid: true,
       categoryTypes: categoryTypes,
       categoryRules: [
-        v => ((v && !!v.length) || !!this.search.length) || 'Category is required'
+        v => ((v && !!v.length) || (this.search && !!this.search.length)) || 'Category or search term is required'
       ],
       sortBy: [
         { text: 'Best Match', value: 'best_match' },
@@ -67,14 +60,6 @@ export default {
         this.setSearchField({ key: 'categories', value })
       }
     },
-    distance: {
-      get () {
-        return this.form.distance
-      },
-      set (value) {
-        this.setSearchField({ key: 'distance', value })
-      }
-    },
     sort: {
       get () {
         return this.form.sort
@@ -97,5 +82,3 @@ export default {
   }
 }
 </script>
-<style lang="scss" scoped>
-</style>

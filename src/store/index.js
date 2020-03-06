@@ -12,10 +12,9 @@ export default new Vuex.Store({
     spots: [],
     form: {
       search: '',
-      distance: 1,
       sort: 'best_match',
       categories: [
-        { key: 'Food (All)', value: 'food' }
+        // { key: 'Food (All)', value: 'food' }
       ]
     }
   },
@@ -84,9 +83,9 @@ export default new Vuex.Store({
       const data = {
         params: {
           limit: 50,
-          radius: 3000,
-          sort_by: 'distance',
+          radius: 5000,
           term: form.search,
+          sort_by: form.sort,
           latitude: location.lat,
           longitude: location.lon,
           categories: form.categories.map(c => c.value)

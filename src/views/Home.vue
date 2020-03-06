@@ -21,19 +21,3 @@ export default {
   methods: {}
 }
 </script>
-<style scoped lang="scss">
-.card {
-  height: 100%;
-}
-
-.address,
-.phone {
-  display: flex;
-  margin-top: 1rem;
-
-  &__content {
-    align-self: center;
-    display: block;
-  }
-}
-</style>

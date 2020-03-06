@@ -2,13 +2,19 @@
   <v-container v-if="spots.length" grid-list-xl>
     <v-layout row wrap>
       <v-flex v-for="(s, i) in spots" :key="s.id" xs12 md6>
-        <v-card class="card mx-auto my-auto">
+        <v-card class="card" :data-index="i">
           <v-img :src="s.image_url" height="250"></v-img>
-          <v-card-title>{{ s.name }}</v-card-title>
+          <v-card-title>
+            <span class="flex-grow-1">{{ s.name }}</span>
+            <v-btn :href="s.url" target="_blank" class="ml-3" icon tile link>
+              <v-icon>mdi-open-in-new</v-icon>
+            </v-btn>
+          </v-card-title>
+          <v-card-subtitle>{{ s.distance | metersToMiles }}</v-card-subtitle>
           <v-card-text>
             <v-row align="center" class="mx-0">
               <v-rating :value="s.rating" color="amber" dense half-increments readonly size="14"></v-rating>
-              <div class="grey--text ml-4">{{ s.rating }} ({{ s.review_count }})</div>
+              <div class="grey--text ml-2">{{ s.rating }} ({{ s.review_count }})</div>
             </v-row>
             <div class="my-0 subtitle-1">
               <span v-if="s.price">
@@ -33,9 +39,8 @@
                 <v-icon>mdi-navigation</v-icon>
               </v-btn>
               <div class="address__content">
-                <div v-for="(address, index) in s.location.display_address" :key="`address-${s.id}-${index}`">
-                  {{ address }}
-                </div>
+                <div>{{ s.location.address1 }}</div>
+                <div>{{ s.location.city }}, {{ s.location.state }} {{ s.location.zip_code }}</div>
               </div>
             </div>
           </v-card-text>
@@ -45,8 +50,16 @@
   </v-container>
 </template>
 <script>
+import { getMiles } from '@/utils/calculate'
+import round from 'lodash/round'
+
 export default {
   name: 'ResultList',
+  filters: {
+    metersToMiles (value) {
+      return `${round(getMiles(value), 2)} miles away`
+    }
+  },
   props: {
     spots: {
       type: Array,
@@ -56,5 +69,18 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.card {
+  height: 100%;
+}
 
+.address,
+.phone {
+  display: flex;
+  margin-top: 1rem;
+
+  &__content {
+    align-self: center;
+    display: block;
+  }
+}
 </style>
