@@ -76,7 +76,7 @@ export default new Vuex.Store({
         commit('setLocation', location)
       })
     },
-    getSpots ({ state, commit }) {
+    getSpots ({ state, commit }, pageOffset = null) {
       if (!state.location) return
       const { form, location } = state
 
@@ -86,9 +86,10 @@ export default new Vuex.Store({
           radius: 5000,
           term: form.search,
           sort_by: form.sort,
+          offset: pageOffset,
           latitude: location.lat,
           longitude: location.lon,
-          categories: form.categories.map(c => c.value)
+          categories: form.categories.map(c => c.value).toString()
         }
       }
       commit('setLoading', true)

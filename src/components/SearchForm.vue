@@ -2,7 +2,7 @@
   <v-form ref="form" v-model="valid" lazy-validation class="flex-grow-1 pa-3">
     <v-row>
       <v-col sm="5" class="py-0">
-        <v-text-field v-model="search" label="Search Term" append-icon="mdi-magnify" solo @keyup.enter="submitForm()"></v-text-field>
+        <v-text-field v-model="search" label="Search Term" append-icon="mdi-magnify" solo @keyup.enter="submitForm"></v-text-field>
       </v-col>
       <v-col sm="5" class="py-0">
         <v-combobox v-model="categories" :rules="categoryRules" :items="categoryTypes" item-text="key" item-value="value" multiple small-chips required solo label="Food Categories"></v-combobox>
@@ -15,7 +15,7 @@
       <v-spacer></v-spacer>
       <v-col class="text-right">
         <v-btn class="mx-4 px-6" ripple @click="clearForm()">clear</v-btn>
-        <v-btn class="px-6" ripple color="primary" :loading="loading" :disabled="loading || !specificLocation" @click="submitForm()">search</v-btn>
+        <v-btn class="px-6" ripple color="primary" :loading="loading" :disabled="loading || !specificLocation" @click="submitForm">search</v-btn>
       </v-col>
     </v-row>
   </v-form>
