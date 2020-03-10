@@ -1,0 +1,72 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@components/searchForm exports a valid component 1`] = `
+<v-form-stub lazyvalidation="true" value="true" class="flex-grow-1 pa-3">
+  <v-row-stub tag="div">
+    <v-col-stub sm="5" tag="div" class="py-0">
+      <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" appendicon="mdi-magnify" backgroundcolor="" label="Search Term" loaderheight="2" clearicon="$clear" solo="true" type="text"></v-text-field-stub>
+    </v-col-stub>
+    <v-col-stub sm="5" tag="div" class="py-0">
+      <v-combobox-stub errorcount="1" errormessages="" messages="" rules="v => v &amp;&amp; !!v.length || this.search &amp;&amp; !!this.search.length || 'Category or search term is required'" successmessages="" appendicon="$dropdown" backgroundcolor="" label="Food Categories" loaderheight="2" clearicon="$clear" solo="true" type="text" valuecomparator="function deepEqual(a, b) {
+  if (a === b) return true;
+
+  if (a instanceof Date &amp;&amp; b instanceof Date) {
+    // If the values are Date, they were convert to timestamp with getTime and compare it
+    if (a.getTime() !== b.getTime()) return false;
+  }
+
+  if (a !== Object(a) || b !== Object(b)) {
+    // If the values aren't objects, they were already checked for equality
+    return false;
+  }
+
+  var props = Object.keys(a);
+
+  if (props.length !== Object.keys(b).length) {
+    // Different number of props, don't bother to check
+    return false;
+  }
+
+  return props.every(function (p) {
+    return deepEqual(a[p], b[p]);
+  });
+}" nodatatext="$vuetify.noDataText" items="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" itemcolor="primary" itemdisabled="disabled" itemtext="key" itemvalue="value" menuprops="[object Object]" multiple="true" returnobject="true" smallchips="true" allowoverflow="true" filter="function _default(item, queryText, itemText) {
+        return itemText.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1;
+      }" delimiters="" required=""></v-combobox-stub>
+    </v-col-stub>
+    <v-col-stub sm="2" tag="div" class="py-0">
+      <v-select-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" appendicon="$dropdown" backgroundcolor="" label="Sort By" loaderheight="2" clearicon="$clear" solo="true" type="text" valuecomparator="function deepEqual(a, b) {
+  if (a === b) return true;
+
+  if (a instanceof Date &amp;&amp; b instanceof Date) {
+    // If the values are Date, they were convert to timestamp with getTime and compare it
+    if (a.getTime() !== b.getTime()) return false;
+  }
+
+  if (a !== Object(a) || b !== Object(b)) {
+    // If the values aren't objects, they were already checked for equality
+    return false;
+  }
+
+  var props = Object.keys(a);
+
+  if (props.length !== Object.keys(b).length) {
+    // Different number of props, don't bother to check
+    return false;
+  }
+
+  return props.every(function (p) {
+    return deepEqual(a[p], b[p]);
+  });
+}" nodatatext="$vuetify.noDataText" items="[object Object],[object Object],[object Object],[object Object]" itemcolor="primary" itemdisabled="disabled" itemtext="text" itemvalue="value" menuprops="[object Object]"></v-select-stub>
+    </v-col-stub>
+  </v-row-stub>
+  <v-row-stub tag="div" nogutters="true">
+    <v-spacer-stub></v-spacer-stub>
+    <v-col-stub tag="div" class="text-right">
+      <v-btn-stub tag="button" activeclass="" ripple="true" type="button" class="mx-4 px-6">clear</v-btn-stub>
+      <v-btn-stub color="primary" tag="button" activeclass="" ripple="true" type="button" class="px-6">search</v-btn-stub>
+    </v-col-stub>
+  </v-row-stub>
+</v-form-stub>
+`;
