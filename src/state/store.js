@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import dispatchActionForAllModules from '@utils/dispatch-action-for-all-modules'
+import dispatchActionForModules from '@/src/utils/dispatchActionForModules'
 
 import modules from './modules'
 
@@ -18,4 +18,4 @@ export default store
 
 // Automatically run the `init` action for every module,
 // if one exists.
-dispatchActionForAllModules('init')
+dispatchActionForModules('init')

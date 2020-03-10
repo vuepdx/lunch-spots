@@ -1,7 +1,7 @@
 import allModules from '@state/modules'
 import store from '@state/store'
 
-export default function dispatchActionForAllModules(
+export default function dispatchActionForModules(
   actionName,
   { modules = allModules, modulePrefix = '', flags = {} } = {}
 ) {
@@ -23,7 +23,7 @@ export default function dispatchActionForAllModules(
     // If there are any nested sub-modules...
     if (moduleDefinition.modules) {
       // Also dispatch the action for these sub-modules.
-      dispatchActionForAllModules(actionName, {
+      dispatchActionForModules(actionName, {
         modules: moduleDefinition.modules,
         modulePrefix: modulePrefix + moduleName + '/',
         flags,

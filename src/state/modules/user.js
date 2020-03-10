@@ -71,8 +71,8 @@ export const actions = {
     commit(commit('setLocation', null))
   },
   // Validates the current user's location
-  validate({ commit, state }) {
-    if (!state.location) return Promise.resolve(null)
+  validate({ dispatch, state }) {
+    if (!state.location) return dispatch('getGeoLocation')
 
     return state.location
   },

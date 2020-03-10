@@ -1,4 +1,4 @@
-describe('@utils/dispatch-action-for-all-modules', () => {
+describe('@utils/dispatchActionForModules', () => {
   beforeEach(() => {
     jest.resetModules()
   })
@@ -19,7 +19,7 @@ describe('@utils/dispatch-action-for-all-modules', () => {
       },
     }))
 
-    require('./dispatch-action-for-all-modules').default('someAction')
+    require('./dispatchActionForModules').default('someAction')
 
     const { moduleA, moduleB } = require('@state/modules')
     expect(moduleA.actions.someAction).toHaveBeenCalledTimes(1)
@@ -46,7 +46,7 @@ describe('@utils/dispatch-action-for-all-modules', () => {
       },
     }))
 
-    require('./dispatch-action-for-all-modules').default('someAction')
+    require('./dispatchActionForModules').default('someAction')
 
     const { moduleA, moduleB } = require('@state/modules')
     expect(moduleA.actions.someAction).toHaveBeenCalledTimes(1)
@@ -81,7 +81,7 @@ describe('@utils/dispatch-action-for-all-modules', () => {
       },
     }))
 
-    require('./dispatch-action-for-all-modules').default('someAction')
+    require('./dispatchActionForModules').default('someAction')
 
     const { moduleA } = require('@state/modules')
     const { moduleB } = moduleA.modules
@@ -123,7 +123,7 @@ describe('@utils/dispatch-action-for-all-modules', () => {
       },
     }))
 
-    require('./dispatch-action-for-all-modules').default('someAction')
+    require('./dispatchActionForModules').default('someAction')
 
     const { moduleA } = require('@state/modules')
     const { moduleB } = moduleA.modules

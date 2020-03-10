@@ -81,7 +81,6 @@ import { userComputed, userMethods } from '@state/helpers'
 export default {
   name: 'App',
   page: {
-    // All subcomponent titles will be injected into this template.
     titleTemplate(title) {
       title = typeof title === 'function' ? title(this.$store) : title
       return title ? `${title} | ${appConfig.title}` : appConfig.title
@@ -95,9 +94,6 @@ export default {
   },
   computed: {
     ...userComputed,
-  },
-  created() {
-    this.getGeoLocation()
   },
   methods: {
     ...userMethods,
