@@ -58,13 +58,16 @@
 
     <v-content>
       <v-container fluid>
-        <router-view></router-view>
+        <router-view :key="$route.fullPath"></router-view>
       </v-container>
     </v-content>
 
     <v-footer app>
       <v-spacer></v-spacer>Lunch Spots is powered by
-      <img src="https://s3-media3.fl.yelpcdn.com/assets/srv0/yelp_design_web/b085a608c15f/assets/img/logos_desktop/default@2x.png" class="yelp-logo" />
+      <img
+        src="https://s3-media3.fl.yelpcdn.com/assets/srv0/yelp_design_web/b085a608c15f/assets/img/logos_desktop/default@2x.png"
+        class="logo"
+      />
       &copy; {{ new Date().getFullYear() }}
       <v-spacer></v-spacer>
     </v-footer>
@@ -72,31 +75,38 @@
 </template>
 
 <script>
-import { mapGetters, mapActions } from 'vuex'
+import appConfig from '@src/app.config'
+import { userComputed, userMethods } from '@state/helpers'
 
 export default {
   name: 'App',
-  components: {},
-  props: {},
-  data () {
+  page: {
+    // All subcomponent titles will be injected into this template.
+    titleTemplate(title) {
+      title = typeof title === 'function' ? title(this.$store) : title
+      return title ? `${title} | ${appConfig.title}` : appConfig.title
+    },
+  },
+  data() {
     return {
       drawer: false,
-      title: 'Lunch Spot Finder'
+      title: 'Lunch Spot Finder',
     }
   },
   computed: {
-    ...mapGetters(['specificLocation'])
+    ...userComputed,
   },
-  created () {
+  created() {
     this.getGeoLocation()
   },
   methods: {
-    ...mapActions(['getGeoLocation'])
-  }
+    ...userMethods,
+  },
 }
 </script>
+
 <style scoped>
-.yelp-logo {
+.logo {
   display: inline-block;
   height: 20px;
   margin: -5px 3px 0;

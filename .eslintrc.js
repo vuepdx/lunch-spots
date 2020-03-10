@@ -1,61 +1,81 @@
 module.exports = {
   root: true,
-  env: {
-    node: true
+  parserOptions: {
+    sourceType: 'script',
   },
   extends: [
+    // https://github.com/vuejs/eslint-plugin-vue#bulb-rules
     'plugin:vue/recommended',
-    '@vue/standard',
-    'standard'
+    // https://github.com/standard/standard/blob/master/docs/RULES-en.md
+    'standard',
+    // https://github.com/prettier/eslint-config-prettier
+    'prettier',
+    'prettier/standard',
+    'prettier/vue',
   ],
-  parserOptions: {
-    parser: 'babel-eslint',
-    ecmaVersion: 2017,
-    sourceType: 'module'
-  },
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
-    'vue/max-attributes-per-line': ['error', {
-      singleline: 20
-    }],
-    'vue/attribute-hyphenation': ['error', 'always', {
-      ignore: ['viewBox']
-    }],
-    'vue/singleline-html-element-content-newline': 0,
-    'vue/this-in-template': ['error', 'never'],
-    'vue/no-v-html': 0,
-    'vue/html-self-closing': ['error', {
-      html: {
-        void: 'always',
-        normal: 'never',
-        component: 'never'
+    // Only allow debugger in development
+    'no-debugger': process.env.PRE_COMMIT ? 'error' : 'off',
+    // Only allow `console.log` in development
+    'no-console': process.env.PRE_COMMIT
+      ? ['error', { allow: ['warn', 'error'] }]
+      : 'off',
+    'import/no-relative-parent-imports': 'error',
+    'import/order': 'error',
+    'vue/array-bracket-spacing': 'error',
+    'vue/arrow-spacing': 'error',
+    'vue/block-spacing': 'error',
+    'vue/brace-style': 'error',
+    'vue/camelcase': 'error',
+    'vue/comma-dangle': ['error', 'always-multiline'],
+    'vue/component-name-in-template-casing': 'error',
+    'vue/dot-location': ['error', 'property'],
+    'vue/eqeqeq': 'error',
+    'vue/key-spacing': 'error',
+    'vue/keyword-spacing': 'error',
+    'vue/no-boolean-default': ['error', 'default-false'],
+    'vue/no-deprecated-scope-attribute': 'error',
+    'vue/no-empty-pattern': 'error',
+    'vue/object-curly-spacing': ['error', 'always'],
+    'vue/padding-line-between-blocks': 'error',
+    'vue/space-infix-ops': 'error',
+    'vue/space-unary-ops': 'error',
+    'vue/v-on-function-call': 'error',
+    'vue/v-slot-style': [
+      'error',
+      {
+        atComponent: 'v-slot',
+        default: 'v-slot',
+        named: 'longform',
       },
-      svg: 'always',
-      math: 'always'
-    }],
-    'vue/no-duplicate-attributes': ['error', {
-      allowCoexistClass: false,
-      allowCoexistStyle: false
-    }],
-    // allow async-await
-    'generator-star-spacing': 'off',
-    // don't care about quotes
-    quotes: 'warn',
-    // allow debugger during development
-    'no-undefined': 1,
-    'no-var': 'error',
-    'prefer-promise-reject-errors': 'off'
+    ],
+    'vue/valid-v-slot': 'error',
   },
   overrides: [
     {
-      files: [
-        '**/__tests__/*.{j,t}s?(x)',
-        '**/tests/unit/**/*.spec.{j,t}s?(x)'
-      ],
+      files: ['src/**/*', 'tests/unit/**/*', 'tests/e2e/**/*'],
+      parserOptions: {
+        parser: 'babel-eslint',
+        sourceType: 'module',
+      },
       env: {
-        jest: true
-      }
-    }
-  ]
+        browser: true,
+      },
+    },
+    {
+      files: ['**/*.unit.js'],
+      parserOptions: {
+        parser: 'babel-eslint',
+        sourceType: 'module',
+      },
+      env: { jest: true },
+      globals: {
+        mount: false,
+        shallowMount: false,
+        shallowMountView: false,
+        createComponentMocks: false,
+        createModuleStore: false,
+      },
+    },
+  ],
 }
