@@ -16,7 +16,9 @@ const aliases = {
 
 module.exports = {
   webpack: {},
-  jest: {},
+  jest: {
+    'support/(.*)$': '<rootDir>/tests/unit/support/$1',
+  },
   jsconfig: {},
 }
 

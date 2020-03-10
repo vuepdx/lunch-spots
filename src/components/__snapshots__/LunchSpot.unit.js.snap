@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@components/lunchSpot exports a valid component 1`] = `
+<v-card-stub loaderheight="4" tag="div" class="card">
+  <v-img-stub height="250" options="[object Object]" position="center center" src="https://s3-media2.fl.yelpcdn.com/bphoto/uwhAnJYbeZZP9z_PxVdFkg/o.jpg" transition="fade-transition"></v-img-stub>
+  <v-card-title-stub><span class="flex-grow-1">Blue Star Donuts</span>
+    <v-btn-stub tag="button" tile="true" activeclass="" link="true" href="https://www.yelp.com/biz/blue-star-donuts-portland?adjust_creative=E0LkMJF7FjIiHhm1Hr2A2w&amp;utm_campaign=yelp_api_v3&amp;utm_medium=api_v3_business_search&amp;utm_source=E0LkMJF7FjIiHhm1Hr2A2w" target="_blank" icon="true" type="button" class="ml-3">
+      <v-icon-stub>mdi-open-in-new</v-icon-stub>
+    </v-btn-stub>
+  </v-card-title-stub>
+  <v-card-subtitle-stub>0.37 miles away</v-card-subtitle-stub>
+  <v-card-text-stub>
+    <v-row-stub tag="div" align="center" class="mx-0">
+      <v-rating-stub color="amber" opendelay="0" closedelay="0" ripple="true" backgroundcolor="accent" dense="true" emptyicon="$ratingEmpty" fullicon="$ratingFull" halficon="$ratingHalf" halfincrements="true" length="5" readonly="true" size="14" value="4"></v-rating-stub>
+      <div class="grey--text ml-2">4 (4029)</div>
+    </v-row-stub>
+    <div class="my-0 subtitle-1"><span>
+          $
+          <v-icon-stub xsmall="" x-small="" class="mr-1">mdi-square-small</v-icon-stub></span>
+      <v-chip-stub xsmall="true" activeclass="" tag="span" active="true" closeicon="$delete" filtericon="$complete" label="true" class="mr-2 mb-0">Donuts</v-chip-stub>
+      <v-chip-stub xsmall="true" activeclass="" tag="span" active="true" closeicon="$delete" filtericon="$complete" label="true" class="mr-2 mb-0">Coffee &amp; Tea</v-chip-stub>
+      <v-chip-stub xsmall="true" activeclass="" tag="span" active="true" closeicon="$delete" filtericon="$complete" label="true" class="mr-2 mb-0">Breakfast &amp; Brunch</v-chip-stub>
+    </div>
+    <v-divider-stub class="my-4"></v-divider-stub>
+    <div class="phone">
+      <v-btn-stub tag="button" tile="true" activeclass="" link="true" href="tel:+15032658410" icon="true" type="button" class="mr-3">
+        <v-icon-stub>mdi-phone</v-icon-stub>
+      </v-btn-stub>
+      <div class="phone__content">(503) 265-8410</div>
+    </div>
+    <div class="address">
+      <v-btn-stub tag="button" tile="true" activeclass="" link="true" href="https://maps.google.com/?q=1155 SW Morrison St,Ste 102,Portland, OR 97205" target="_blank" icon="true" type="button" class="mr-3">
+        <v-icon-stub>mdi-navigation</v-icon-stub>
+      </v-btn-stub>
+      <div class="address__content">
+        <div>1155 SW Morrison St</div>
+        <div>
+          Portland, OR
+          97205
+        </div>
+      </div>
+    </div>
+  </v-card-text-stub>
+</v-card-stub>
+`;
