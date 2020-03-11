@@ -17,7 +17,9 @@
           <v-icon>mdi-open-in-new</v-icon>
         </v-btn>
       </v-card-title>
-      <v-card-subtitle>{{ spot.distance | metersToMiles }}</v-card-subtitle>
+      <v-card-subtitle
+        >{{ spot.distance | distanceFormat }} meters away.</v-card-subtitle
+      >
       <v-card-text>
         <v-row align="center" class="mx-0">
           <v-rating
@@ -81,14 +83,13 @@
 </template>
 
 <script>
-import { getMiles } from '@utils/calculate'
 import round from 'lodash/round'
 
 export default {
   name: 'LunchSpot',
   filters: {
-    metersToMiles(value) {
-      return `${round(getMiles(value), 2)} miles away`
+    distanceFormat(value) {
+      return round(value, 2)
     },
   },
   props: {

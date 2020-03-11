@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@views/Settings is a valid view 1`] = `
+<div class="container fill-height container--fluid">
+  <div class="row align-center justify-center">
+    <div class="grow text-center col">
+      <div class="v-card v-sheet theme--light">
+        <div class="v-card__text">
+          <h2>Location Settings</h2>
+          <div class="v-input theme--light v-text-field">
+            <div class="v-input__control">
+              <div class="v-input__slot">
+                <div class="v-text-field__slot"><label for="input-4" class="v-label theme--light" style="left: 0px; position: absolute;">Search Location</label><input id="input-4" type="text"></div>
+              </div>
+              <div class="v-text-field__details">
+                <div class="v-messages theme--light">
+                  <div class="v-messages__wrapper"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

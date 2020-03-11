@@ -6,5 +6,5 @@ export const userComputed = {
 
 export const userMethods = mapActions('user', [
   'getGeoLocation',
-  'searchLocation',
+  'clearLocation',
 ])

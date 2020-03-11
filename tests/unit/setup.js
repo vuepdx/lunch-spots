@@ -4,7 +4,6 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import Vuetify from 'vuetify'
 import axios from 'axios'
-
 // ===
 // Utility functions
 // ===
@@ -33,6 +32,7 @@ axios.defaults.adapter = require('axios/lib/adapters/xhr')
 // we care more about the quality of errors than performance
 // for tests.
 Vue.config.productionTip = false
+Vue.use(Vuetify)
 
 // ===
 // Register global components
@@ -82,24 +82,28 @@ Object.defineProperty(window, 'localStorage', {
 //   throw message instanceof Error ? message : new Error(message)
 // }
 
-// // Make console.warn throw, so that Jest tests fail
-// const warn = console.warn
-// console.warn = function(message) {
-//   warn.apply(console, arguments)
-//   // NOTE: You can whitelist some `console.warn` messages here
-//   //       by returning if the `message` value is acceptable.
-//   throw message instanceof Error ? message : new Error(message)
-// }
+// Make console.warn throw, so that Jest tests fail
+const warn = console.warn
+console.warn = function(message) {
+  warn.apply(console, arguments)
+  // NOTE: You can whitelist some `console.warn` messages here
+  //       by returning if the `message` value is acceptable.
+  throw message instanceof Error ? message : new Error(message)
+}
 
 // ===
 // Global helpers
 // ===
+global.Vuetify = Vuetify
 
 // https://vue-test-utils.vuejs.org/api/#mount
 global.mount = vueTestUtils.mount
 
 // https://vue-test-utils.vuejs.org/api/#shallowmount
 global.shallowMount = vueTestUtils.shallowMount
+
+// https://vue-test-utils.vuejs.org/api/#enableautodestroy-hook
+global.enableAutoDestroy = vueTestUtils.enableAutoDestroy
 
 // A helper for creating Vue component mocks
 global.createComponentMocks = ({ store, router, style, mocks, stubs } = {}) => {
@@ -108,7 +112,6 @@ global.createComponentMocks = ({ store, router, style, mocks, stubs } = {}) => {
   // https://vue-test-utils.vuejs.org/api/#createlocalvue
   const localVue = vueTestUtils.createLocalVue()
   const returnOptions = { localVue }
-  Vue.use(Vuetify)
 
   // https://vue-test-utils.vuejs.org/api/options.html#stubs
   returnOptions.stubs = stubs || {}
@@ -152,12 +155,9 @@ global.createComponentMocks = ({ store, router, style, mocks, stubs } = {}) => {
     })
   }
 
-  // If using `router: true`, we'll automatically stub out
-  // components from Vue Router.
-  if (router) {
-    returnOptions.stubs['router-link'] = true
-    returnOptions.stubs['router-view'] = true
-  }
+  returnOptions.vuetify = new Vuetify()
+  returnOptions.stubs['router-link'] = true
+  returnOptions.stubs['router-view'] = true
 
   // If a `style` object is provided, mock some styles.
   if (style) {
@@ -172,10 +172,14 @@ global.createModuleStore = (vuexModule, options = {}) => {
   const store = new Vuex.Store({
     ..._.cloneDeep(vuexModule),
     modules: {
-      auth: {
+      user: {
         namespaced: true,
         state: {
-          currentUser: options.currentUser,
+          location: options.location,
+        },
+        getters: {
+          location: (state) => state.location,
+          specificLocation: (state) => state.location,
         },
       },
     },
@@ -185,9 +189,7 @@ global.createModuleStore = (vuexModule, options = {}) => {
     // https://vuex.vuejs.org/guide/strict.html
     strict: true,
   })
-  axios.defaults.headers.common.Authorization = options.currentUser
-    ? options.currentUser.token
-    : ''
+
   if (vuexModule.actions.init) {
     store.dispatch('init')
   }

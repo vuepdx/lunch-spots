@@ -8,7 +8,7 @@ exports[`@components/lunchSpot exports a valid component 1`] = `
       <v-icon-stub>mdi-open-in-new</v-icon-stub>
     </v-btn-stub>
   </v-card-title-stub>
-  <v-card-subtitle-stub>0.37 miles away</v-card-subtitle-stub>
+  <v-card-subtitle-stub>600.11 meters away.</v-card-subtitle-stub>
   <v-card-text-stub>
     <v-row-stub tag="div" align="center" class="mx-0">
       <v-rating-stub color="amber" opendelay="0" closedelay="0" ripple="true" backgroundcolor="accent" dense="true" emptyicon="$ratingEmpty" fullicon="$ratingFull" halficon="$ratingHalf" halfincrements="true" length="5" readonly="true" size="14" value="4"></v-rating-stub>

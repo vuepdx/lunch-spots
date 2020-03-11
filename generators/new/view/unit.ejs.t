@@ -1,13 +1,13 @@
 ---
-to: "src/views/<%= h.changeCase.kebab(name) %>.unit.js"
+to: "src/views/<%= h.changeCase.pascal(name) %>.unit.js"
 ---
 <%
-  const fileName = h.changeCase.kebab(name)
-  const importName = h.changeCase.pascal(fileName)
+  const fileName = h.changeCase.pascal(name)
+  const importName = h.changeCase.camel(fileName)
 %>import <%= importName %> from './<%= fileName %>'
 
 describe('@views/<%= fileName %>', () => {
   it('is a valid view', () => {
-    expect(<%= importName %>).toBeAViewComponent()
+    expect(<%= importName %>).toBeAComponent()
   })
 })

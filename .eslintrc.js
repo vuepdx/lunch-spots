@@ -73,6 +73,7 @@ module.exports = {
         mount: false,
         shallowMount: false,
         shallowMountView: false,
+        enableAutoDestroy: false,
         createComponentMocks: false,
         createModuleStore: false,
       },

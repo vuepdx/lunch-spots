@@ -1,72 +1,75 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@components/searchForm exports a valid component 1`] = `
-<v-form-stub lazyvalidation="true" value="true" class="flex-grow-1 pa-3">
-  <v-row-stub tag="div">
-    <v-col-stub sm="5" tag="div" class="py-0">
-      <v-text-field-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" appendicon="mdi-magnify" backgroundcolor="" label="Search Term" loaderheight="2" clearicon="$clear" solo="true" type="text"></v-text-field-stub>
-    </v-col-stub>
-    <v-col-stub sm="5" tag="div" class="py-0">
-      <v-combobox-stub errorcount="1" errormessages="" messages="" rules="v => v &amp;&amp; !!v.length || this.search &amp;&amp; !!this.search.length || 'Category or search term is required'" successmessages="" appendicon="$dropdown" backgroundcolor="" label="Food Categories" loaderheight="2" clearicon="$clear" solo="true" type="text" valuecomparator="function deepEqual(a, b) {
-  if (a === b) return true;
-
-  if (a instanceof Date &amp;&amp; b instanceof Date) {
-    // If the values are Date, they were convert to timestamp with getTime and compare it
-    if (a.getTime() !== b.getTime()) return false;
-  }
-
-  if (a !== Object(a) || b !== Object(b)) {
-    // If the values aren't objects, they were already checked for equality
-    return false;
-  }
-
-  var props = Object.keys(a);
-
-  if (props.length !== Object.keys(b).length) {
-    // Different number of props, don't bother to check
-    return false;
-  }
-
-  return props.every(function (p) {
-    return deepEqual(a[p], b[p]);
-  });
-}" nodatatext="$vuetify.noDataText" items="[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object],[object Object]" itemcolor="primary" itemdisabled="disabled" itemtext="key" itemvalue="value" menuprops="[object Object]" multiple="true" returnobject="true" smallchips="true" allowoverflow="true" filter="function _default(item, queryText, itemText) {
-        return itemText.toLocaleLowerCase().indexOf(queryText.toLocaleLowerCase()) > -1;
-      }" delimiters="" required=""></v-combobox-stub>
-    </v-col-stub>
-    <v-col-stub sm="2" tag="div" class="py-0">
-      <v-select-stub errorcount="1" errormessages="" messages="" rules="" successmessages="" appendicon="$dropdown" backgroundcolor="" label="Sort By" loaderheight="2" clearicon="$clear" solo="true" type="text" valuecomparator="function deepEqual(a, b) {
-  if (a === b) return true;
-
-  if (a instanceof Date &amp;&amp; b instanceof Date) {
-    // If the values are Date, they were convert to timestamp with getTime and compare it
-    if (a.getTime() !== b.getTime()) return false;
-  }
-
-  if (a !== Object(a) || b !== Object(b)) {
-    // If the values aren't objects, they were already checked for equality
-    return false;
-  }
-
-  var props = Object.keys(a);
-
-  if (props.length !== Object.keys(b).length) {
-    // Different number of props, don't bother to check
-    return false;
-  }
-
-  return props.every(function (p) {
-    return deepEqual(a[p], b[p]);
-  });
-}" nodatatext="$vuetify.noDataText" items="[object Object],[object Object],[object Object],[object Object]" itemcolor="primary" itemdisabled="disabled" itemtext="text" itemvalue="value" menuprops="[object Object]"></v-select-stub>
-    </v-col-stub>
-  </v-row-stub>
-  <v-row-stub tag="div" nogutters="true">
-    <v-spacer-stub></v-spacer-stub>
-    <v-col-stub tag="div" class="text-right">
-      <v-btn-stub tag="button" activeclass="" ripple="true" type="button" class="mx-4 px-6">clear</v-btn-stub>
-      <v-btn-stub color="primary" tag="button" activeclass="" ripple="true" type="button" class="px-6">search</v-btn-stub>
-    </v-col-stub>
-  </v-row-stub>
-</v-form-stub>
+exports[`@components/searchForm matches snapshot 1`] = `
+<form novalidate="novalidate" class="v-form flex-grow-1 pa-3">
+  <div class="row">
+    <div class="py-0 col-sm-5 col">
+      <div class="v-input theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed">
+        <div class="v-input__control">
+          <div class="v-input__slot">
+            <div class="v-text-field__slot"><label for="input-33" class="v-label theme--light" style="left: 0px; position: absolute;">Search Term</label><input id="input-33" type="text"></div>
+            <div class="v-input__append-inner">
+              <div class="v-input__icon v-input__icon--append"><i aria-hidden="true" class="v-icon notranslate mdi mdi-magnify theme--light"></i></div>
+            </div>
+          </div>
+          <div class="v-text-field__details">
+            <div class="v-messages theme--light">
+              <div class="v-messages__wrapper"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="py-0 col-sm-5 col">
+      <div class="v-input v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select v-select--chips v-select--chips--small v-select--is-multi v-autocomplete">
+        <div class="v-input__control">
+          <div role="combobox" aria-haspopup="listbox" aria-expanded="false" aria-owns="list-37" class="v-input__slot">
+            <div class="v-select__slot">
+              <div class="v-select__selections"><span tabindex="-1" class="v-chip--select v-chip v-chip--clickable v-chip--no-color theme--light v-size--small"><span class="v-chip__content">Food (All)</span></span><input required="required" id="input-37" type="text" autocomplete="off"></div>
+              <div class="v-input__append-inner">
+                <div class="v-input__icon v-input__icon--append"><i aria-hidden="true" class="v-icon notranslate mdi mdi-menu-down theme--light"></i></div>
+              </div><input type="hidden" value="[object Object]">
+            </div>
+            <div class="v-menu">
+              <!---->
+            </div>
+          </div>
+          <div class="v-text-field__details">
+            <div class="v-messages theme--light">
+              <div class="v-messages__wrapper"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="py-0 col-sm-2 col">
+      <div class="v-input v-input--is-label-active v-input--is-dirty theme--light v-text-field v-text-field--single-line v-text-field--solo v-text-field--enclosed v-select">
+        <div class="v-input__control">
+          <div role="button" aria-haspopup="listbox" aria-expanded="false" aria-owns="list-43" class="v-input__slot">
+            <div class="v-select__slot">
+              <div class="v-select__selections">
+                <div class="v-select__selection v-select__selection--comma">Best Match</div><input id="input-43" readonly="readonly" type="text" aria-readonly="false" autocomplete="off">
+              </div>
+              <div class="v-input__append-inner">
+                <div class="v-input__icon v-input__icon--append"><i aria-hidden="true" class="v-icon notranslate mdi mdi-menu-down theme--light"></i></div>
+              </div><input type="hidden" value="best_match">
+            </div>
+            <div class="v-menu">
+              <!---->
+            </div>
+          </div>
+          <div class="v-text-field__details">
+            <div class="v-messages theme--light">
+              <div class="v-messages__wrapper"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row no-gutters">
+    <div class="spacer"></div>
+    <div class="text-right col"><button type="button" class="mx-4 px-6 v-btn v-btn--contained theme--light v-size--default"><span class="v-btn__content">clear</span></button> <button type="button" disabled="disabled" class="px-6 v-btn v-btn--contained v-btn--disabled theme--light v-size--default" data-test="submitBtn"><span class="v-btn__content">search</span></button></div>
+  </div>
+</form>
 `;

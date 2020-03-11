@@ -43,7 +43,8 @@
           color="primary"
           :loading="loading"
           :disabled="loading || !specificLocation"
-          @click="submitForm"
+          data-test="submitBtn"
+          @click.native="submitForm"
           >search</v-btn
         >
       </v-col>

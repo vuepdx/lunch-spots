@@ -7,6 +7,11 @@ export const yelp = axios.create({
   },
 })
 
+export const openStreetMap = axios.create({
+  baseURL:
+    'https://cors-anywhere.herokuapp.com/https://nominatim.openstreetmap.org/',
+})
+
 export const http = axios.create({
   baseURL: 'https://cors-anywhere.herokuapp.com/',
 })

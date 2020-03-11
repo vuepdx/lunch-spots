@@ -31,23 +31,35 @@
             <v-list-item-title>About</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
-        <v-list-item>
+        <v-list-item link :to="{ name: 'Settings' }">
           <v-list-item-action>
-            <v-icon>mdi-settings</v-icon>
+            <v-icon>mdi-cog-outline</v-icon>
           </v-list-item-action>
           <v-list-item-content>
             <v-list-item-title>Location Settings</v-list-item-title>
           </v-list-item-content>
         </v-list-item>
       </v-list>
+      <template v-slot:append>
+        <div class="pa-2">
+          <v-btn block @click="clearLocation">Clear Location Data</v-btn>
+        </div>
+      </template>
     </v-navigation-drawer>
 
     <v-app-bar app clipped-left>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer"></v-app-bar-nav-icon>
-      <v-toolbar-title>{{ title }}</v-toolbar-title>
+      <v-toolbar-title @click="$router.push({ name: 'Home' })">
+        {{ title }}
+      </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn v-if="specificLocation" depressed class="d-none d-sm-flex">
+        <v-btn
+          v-if="specificLocation"
+          depressed
+          class="d-none d-sm-flex"
+          @click="getGeoLocation"
+        >
           {{ specificLocation }}
         </v-btn>
         <v-btn v-else icon @click="getGeoLocation">

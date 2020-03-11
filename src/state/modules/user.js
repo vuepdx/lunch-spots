@@ -1,4 +1,4 @@
-import { http } from '@utils/api'
+import { openStreetMap } from '@utils/api'
 import round from 'lodash/round'
 
 export const state = {
@@ -14,6 +14,11 @@ export const mutations = {
       state.location = payload
       saveState('user.location', payload)
     }
+  },
+  clearLocation(state) {
+    state.location = null
+    state.geolocation = false
+    clearState('user.location')
   },
 }
 
@@ -47,8 +52,8 @@ export const actions = {
     if (!location) {
       location = state.location
     }
-    return http
-      .get('https://nominatim.openstreetmap.org/reverse', {
+    return openStreetMap
+      .get('reverse', {
         params: {
           format: 'json',
           lat: location.lat,
@@ -67,18 +72,15 @@ export const actions = {
         commit('setLocation', location)
       })
   },
-  searchLocation({ commit }) {
-    commit(commit('setLocation', null))
-  },
   // Validates the current user's location
-  validate({ dispatch, state }) {
-    if (!state.location) return dispatch('getGeoLocation')
+  validate({ state }) {
+    if (!state.location) return Promise.resolve(null)
 
-    return state.location
+    return Promise.resolve(state.location)
   },
   // Logs out the current user.
-  logOut({ commit }) {
-    commit('setLocation', null)
+  clearLocation({ commit }) {
+    commit('clearLocation')
   },
 }
 
@@ -107,4 +109,8 @@ function getSavedState(key) {
 
 function saveState(key, state) {
   window.localStorage.setItem(key, JSON.stringify(state))
+}
+
+function clearState(key) {
+  window.localStorage.removeItem(key)
 }

@@ -1,35 +1,24 @@
 import searchForm from './SearchForm'
 
-describe('@components/searchForm', () => {
-  const wrapper = shallowMount(
-    searchForm,
-    createComponentMocks({
+let wrapper = null
+beforeEach(() => {
+  wrapper = mount(searchForm, {
+    ...createComponentMocks({
       store: {
-        user: {
-          state: {
-            location: {},
-          },
-          getters: {
-            specificLocation: (state) => state.location,
-          },
-        },
-        search: {
-          state: {
-            loading: false,
-            spots: [],
-            form: {},
-          },
-          getters: {
-            loading: (state) => state.loading,
-            spots: (state) => state.spots,
-            form: (state) => state.form,
-          },
-        },
+        user: require('@state/modules/user'),
+        search: require('@state/modules/search'),
       },
-    })
-  )
+    }),
+  })
+})
+
+enableAutoDestroy(afterEach)
+
+describe('@components/searchForm', () => {
   it('exports a valid component', () => {
     expect(searchForm).toBeAComponent()
+  })
+  it('matches snapshot', () => {
     expect(wrapper).toMatchSnapshot()
   })
 })

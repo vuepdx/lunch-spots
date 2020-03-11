@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import Store from '@state/store'
 // https://github.com/declandewet/vue-meta
 import VueMeta from 'vue-meta'
 import Home from '@views/Home.vue'
@@ -15,6 +16,10 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    beforeEnter(to, from, next) {
+      if (!Store.state.user.location) return next({ name: 'Settings' })
+      next()
+    },
   },
   {
     path: '/about',
@@ -23,6 +28,14 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import('@views/About.vue'),
+  },
+  {
+    path: '/settings',
+    name: 'Settings',
+    // route level code-splitting
+    // this generates a separate chunk (about.[hash].js) for this route
+    // which is lazy-loaded when the route is visited.
+    component: () => import('@views/Settings.vue'),
   },
   {
     path: '/404',
