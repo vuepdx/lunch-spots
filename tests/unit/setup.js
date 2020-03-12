@@ -73,14 +73,14 @@ Object.defineProperty(window, 'localStorage', {
 // Console handlers
 // ===
 
-// // Make console.error throw, so that Jest tests fail
-// const error = console.error
-// console.error = function(message) {
-//   error.apply(console, arguments)
-//   // NOTE: You can whitelist some `console.error` messages here
-//   //       by returning if the `message` value is acceptable.
-//   throw message instanceof Error ? message : new Error(message)
-// }
+// Make console.error throw, so that Jest tests fail
+const error = console.error
+console.error = function(message) {
+  error.apply(console, arguments)
+  // NOTE: You can whitelist some `console.error` messages here
+  //       by returning if the `message` value is acceptable.
+  throw message instanceof Error ? message : new Error(message)
+}
 
 // Make console.warn throw, so that Jest tests fail
 const warn = console.warn
@@ -106,7 +106,7 @@ global.shallowMount = vueTestUtils.shallowMount
 global.enableAutoDestroy = vueTestUtils.enableAutoDestroy
 
 // A helper for creating Vue component mocks
-global.createComponentMocks = ({ store, router, style, mocks, stubs } = {}) => {
+global.createComponentMocks = ({ store, style, mocks, stubs } = {}) => {
   // Use a local version of Vue, to avoid polluting the global
   // Vue and thereby affecting other tests.
   // https://vue-test-utils.vuejs.org/api/#createlocalvue
