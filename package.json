@@ -23,7 +23,7 @@
     "new": "cross-env HYGEN_TMPLS=generators hygen new"
   },
   "dependencies": {
-    "axios": "0.19.2",
+    "axios": "0.21.1",
     "core-js": "^3.6.4",
     "lodash": "4.17.15",
     "normalize.css": "8.0.1",
